@@ -127,7 +127,6 @@ public class AepsActivity extends AppCompatActivity {
 
         balance=getIntent().getStringExtra("balance");
         tvBalance.setText("Wallet -:  ₹ "+balance);
-        Toast.makeText(this, "Testing", Toast.LENGTH_SHORT).show();
 
         getBankDetails();
         detailLayoutListeners();
