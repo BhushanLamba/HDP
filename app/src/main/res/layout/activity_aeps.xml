@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/background_color"
+    android:layout_height="match_parent"
+    tools:context=".activities.AepsActivity">
+
+
+    <ImageView
+        android:id="@+id/img_close"
+        android:padding="6dp"
+        android:src="@drawable/close"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="30dp"
+        android:layout_height="30dp"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:textColor="@color/black"
+        android:fontFamily="@font/codec_pro_bold"
+        android:text="AEPS"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ScrollView
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_close"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/detail_layout"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:id="@+id/wallet_layout"
+                    android:gravity="center_vertical"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_marginStart="40dp"
+                        android:src="@drawable/wallet"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+
+                    <TextView
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="20dp"
+                        android:id="@+id/tv_balance"
+                        android:text="Balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/transaction_type_layout"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/wallet_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_cash_withdrawal"
+                        android:elevation="8dp"
+                        android:src="@drawable/cash_withdraw1"
+                        android:layout_weight="1"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"/>
+
+                    <ImageView
+                        android:id="@+id/img_mini_statement"
+                        android:elevation="8dp"
+                        android:src="@drawable/mini_statement_unselected1"
+                        android:layout_weight="1"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"/>
+
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/bank_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:elevation="6dp"
+                    app:layout_constraintTop_toBottomOf="@id/transaction_type_layout"
+                    android:background="@drawable/bordered_back"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_bank"
+                        android:layout_width="0dp"
+                        android:layout_height="?attr/actionBarSize"
+                        android:gravity="center_vertical"
+                        android:hint="Bank"
+                        android:paddingHorizontal="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/img_down"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/img_down"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/down"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:background="@color/white"
+                    android:elevation="6dp"
+                    android:id="@+id/aadhar_container"
+                    app:layout_constraintTop_toBottomOf="@id/bank_container"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:hint="Aadhar Number"
+                    android:textColorHint="@color/gray"
+                    app:boxStrokeColor="@color/gray">
+
+                    <EditText
+                        android:id="@+id/et_aadhar_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="12"
+                        android:singleLine="true"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:background="@color/white"
+                    android:elevation="6dp"
+                    android:id="@+id/mobile_container"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/aadhar_container"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:hint="Mobile Number"
+                    android:textColorHint="@color/gray"
+                    app:boxStrokeColor="@color/gray">
+
+                    <EditText
+                        android:id="@+id/et_mobile_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:singleLine="true"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:background="@color/white"
+                    android:elevation="6dp"
+                    app:layout_constraintTop_toBottomOf="@id/mobile_container"
+                    android:id="@+id/til_amount"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:hint="Amount"
+                    android:textColorHint="@color/gray"
+                    app:boxStrokeColor="@color/gray">
+
+                    <EditText
+                        android:id="@+id/et_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:singleLine="true"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <CheckBox
+                    android:gravity="start"
+                    app:layout_constraintTop_toBottomOf="@id/til_amount"
+                    android:checked="true"
+                    android:id="@+id/ckb_terms_condition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="40dp"
+                    android:text="@string/i_the_undersigned_the_holder_of_aadhaar_number"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/ckb_terms_condition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_balance_enquiry"
+                        android:layout_weight="1"
+                        android:textAllCaps="false"
+                        android:text="Balance Enquiry"
+                        android:textColor="@color/white"
+                        android:background="@drawable/card_back_4"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_next"
+                        android:layout_weight="1"
+                        android:textAllCaps="false"
+                        android:text="Next"
+                        android:textColor="@color/white"
+                        android:background="@drawable/card_back_4"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/detail_layout"
+                android:id="@+id/device_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Please select your device"
+                    android:textColor="@color/gray" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:id="@+id/morpho_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/card_back"
+                        android:elevation="6dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingTop="4dp">
+
+                        <ImageView
+                            android:id="@+id/img_morpho"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:src="@drawable/morpho_unselected" />
+
+                        <TextView
+                            android:id="@+id/tv_morpho"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/text_back"
+                            android:gravity="center"
+                            android:paddingTop="8dp"
+                            android:text="Morpho"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/startek_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/card_back"
+                        android:elevation="6dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingTop="4dp">
+
+                        <ImageView
+                            android:id="@+id/img_startek"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:src="@drawable/startek_unselected" />
+
+                        <TextView
+                            android:id="@+id/tv_startek"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/text_back"
+                            android:gravity="center"
+                            android:paddingTop="8dp"
+                            android:text="Startek"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/mantra_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/card_back"
+                        android:elevation="6dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingTop="4dp">
+
+                        <ImageView
+                            android:id="@+id/img_mantra"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:src="@drawable/mantra_unselected" />
+
+                        <TextView
+                            android:id="@+id/tv_mantra"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/text_back"
+                            android:gravity="center"
+                            android:paddingTop="8dp"
+                            android:text="Mantra"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_proceed_device"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/button_back"
+                    android:text="Proceed"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/safe" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="Your data safe with us!"
+                        android:textColor="#14095C" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="We never store your Aadhar number in any form neither we share aadhar or account related details to anyone. Under RBI guidelines BC we are permitted to capture your aadhar number to complete your banking transaction through AEPS bridge" />
+
+            </LinearLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
