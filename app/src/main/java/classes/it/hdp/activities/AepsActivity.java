@@ -78,7 +78,6 @@ public class AepsActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
 
-
     ImageView imgCashWithdrawal, imgMiniStatement;
     String selectedBankName = "select", selectedBankIIN, selectedTransactionType = "WAP";
     EditText etAmount, etMobile, etAadharCard;
@@ -128,6 +127,7 @@ public class AepsActivity extends AppCompatActivity {
 
         balance=getIntent().getStringExtra("balance");
         tvBalance.setText("Wallet -:  ₹ "+balance);
+        Toast.makeText(this, "Testing", Toast.LENGTH_SHORT).show();
 
         getBankDetails();
         detailLayoutListeners();
