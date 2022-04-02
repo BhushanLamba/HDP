@@ -101,6 +101,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="150dp"/>
 
+                    <ImageView
+                        android:id="@+id/img_balance_enquiry"
+                        android:elevation="8dp"
+                        android:src="@drawable/balance_enquiry1"
+                        android:layout_weight="1"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"/>
+
+                    <ImageView
+                        android:id="@+id/img_aadhar_pay"
+                        android:elevation="8dp"
+                        android:src="@drawable/aadhar_pay1"
+                        android:layout_weight="1"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"/>
+
+
                 </LinearLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -211,6 +230,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <CheckBox
+                    android:layout_marginTop="20dp"
                     android:gravity="start"
                     app:layout_constraintTop_toBottomOf="@id/til_amount"
                     android:checked="true"
@@ -221,36 +241,21 @@
                     android:text="@string/i_the_undersigned_the_holder_of_aadhaar_number"
                     android:textColor="@color/black" />
 
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@id/ckb_terms_condition"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_balance_enquiry"
-                        android:layout_weight="1"
-                        android:textAllCaps="false"
-                        android:text="Balance Enquiry"
-                        android:textColor="@color/white"
-                        android:background="@drawable/card_back_4"
-                        android:layout_margin="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
 
-                    <androidx.appcompat.widget.AppCompatButton
+                        app:layout_constraintTop_toBottomOf="@id/ckb_terms_condition"
                         android:id="@+id/btn_next"
                         android:layout_weight="1"
                         android:textAllCaps="false"
                         android:text="Next"
                         android:textColor="@color/white"
                         android:background="@drawable/card_back_4"
-                        android:layout_margin="10dp"
+                        android:layout_margin="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
 
-                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

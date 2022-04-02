@@ -42,6 +42,7 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
@@ -78,13 +79,13 @@ public class AepsActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
 
-    ImageView imgCashWithdrawal, imgMiniStatement;
+    ImageView imgCashWithdrawal, imgMiniStatement,imgBalanceEnquiry,imgAadharPay;
     String selectedBankName = "select", selectedBankIIN, selectedTransactionType = "WAP";
     EditText etAmount, etMobile, etAadharCard;
     CheckBox ckbTermsAndCondition;
     ArrayList<String> bankNameArrayList, bankIINArrayList;
     TextView tvBankName;
-    AppCompatButton btnBalanceEnquiry, btnNext;
+    AppCompatButton  btnNext;
     ConstraintLayout detailsLayout;
     ////////////////DEVICE LAYOUT 3rd LAYOUT//////////////
     LinearLayout deviceLayout;
@@ -112,6 +113,7 @@ public class AepsActivity extends AppCompatActivity {
     ImageView imgClose;
     String balance;
     TextView tvBalance;
+    TextInputLayout tilAmount;
 
 
     @SuppressLint("SetTextI18n")
@@ -147,6 +149,10 @@ public class AepsActivity extends AppCompatActivity {
             selectedTransactionType = "WAP";
             imgMiniStatement.setImageResource(R.drawable.mini_statement_unselected1);
             imgCashWithdrawal.setImageResource(R.drawable.cash_withdraw1);
+            imgBalanceEnquiry.setImageResource(R.drawable.balance_enquiry1);
+            imgAadharPay.setImageResource(R.drawable.aadhar_pay1);
+            tilAmount.setVisibility(View.VISIBLE);
+
         });
 
         imgMiniStatement.setOnClickListener(v ->
@@ -154,14 +160,54 @@ public class AepsActivity extends AppCompatActivity {
             selectedTransactionType = "SAP";
             imgMiniStatement.setImageResource(R.drawable.mini_statement1);
             imgCashWithdrawal.setImageResource(R.drawable.cash_withdraw_unselected1);
+            imgBalanceEnquiry.setImageResource(R.drawable.balance_enquiry1);
+            imgAadharPay.setImageResource(R.drawable.aadhar_pay1);
+            tilAmount.setVisibility(View.GONE);
+
+        });
+
+        imgBalanceEnquiry.setOnClickListener(v ->
+        {
+            selectedTransactionType = "BAP";
+            imgMiniStatement.setImageResource(R.drawable.mini_statement_unselected1);
+            imgCashWithdrawal.setImageResource(R.drawable.cash_withdraw_unselected1);
+            imgBalanceEnquiry.setImageResource(R.drawable.balance_enquiry1_selected);
+            imgAadharPay.setImageResource(R.drawable.aadhar_pay1);
+            tilAmount.setVisibility(View.GONE);
+        });
+
+        imgAadharPay.setOnClickListener(v ->
+        {
+            selectedTransactionType = "MZZ";
+            imgMiniStatement.setImageResource(R.drawable.mini_statement_unselected1);
+            imgCashWithdrawal.setImageResource(R.drawable.cash_withdraw_unselected1);
+            imgBalanceEnquiry.setImageResource(R.drawable.balance_enquiry1);
+            imgAadharPay.setImageResource(R.drawable.aadhar_pay1_selected);
+            tilAmount.setVisibility(View.VISIBLE);
         });
 
 
         btnNext.setOnClickListener(v ->
         {
             if (checkInputs()) {
-                detailsLayout.setVisibility(View.GONE);
-                deviceLayout.setVisibility(View.VISIBLE);
+                if (selectedTransactionType.equalsIgnoreCase("WAP") ||
+                selectedTransactionType.equalsIgnoreCase("MZZ"))
+                {
+                    if (!TextUtils.isEmpty(etAmount.getText()))
+                    {
+                        detailsLayout.setVisibility(View.GONE);
+                        deviceLayout.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        etAmount.setError("Required");                    }
+                }
+                else
+                {
+                    detailsLayout.setVisibility(View.GONE);
+                    deviceLayout.setVisibility(View.VISIBLE);
+                }
+
             }
         });
 
@@ -172,12 +218,8 @@ public class AepsActivity extends AppCompatActivity {
         if (!selectedBankName.equalsIgnoreCase("select")) {
             if (!TextUtils.isEmpty(etAadharCard.getText())) {
                 if (!TextUtils.isEmpty(etMobile.getText())) {
-                    if (!TextUtils.isEmpty(etAmount.getText())) {
                         return ckbTermsAndCondition.isChecked();
-                    } else {
-                        etAmount.setError("Required");
-                        return false;
-                    }
+
                 } else {
                     etMobile.setError("Required");
                     return false;
@@ -733,9 +775,12 @@ public class AepsActivity extends AppCompatActivity {
     private void initViews() {
 
         tvBalance=findViewById(R.id.tv_balance);
+        tilAmount=findViewById(R.id.til_amount);
 
         imgCashWithdrawal = findViewById(R.id.img_cash_withdrawal);
         imgMiniStatement = findViewById(R.id.img_mini_statement);
+        imgBalanceEnquiry = findViewById(R.id.img_balance_enquiry);
+        imgAadharPay = findViewById(R.id.img_aadhar_pay);
 
         tvBankName = findViewById(R.id.tv_bank);
         imgClose = findViewById(R.id.img_close);
@@ -764,8 +809,6 @@ public class AepsActivity extends AppCompatActivity {
 
         btnProceedDeviceLayout = findViewById(R.id.btn_proceed_device);
         btnNext = findViewById(R.id.btn_next);
-        btnBalanceEnquiry = findViewById(R.id.btn_balance_enquiry);
-
 
     }
 
