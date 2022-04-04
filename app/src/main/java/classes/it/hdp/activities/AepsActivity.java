@@ -90,8 +90,6 @@ public class AepsActivity extends AppCompatActivity {
     ////////////////DEVICE LAYOUT 3rd LAYOUT//////////////
     LinearLayout deviceLayout;
     ImageView imgMorpho, imgStartek, imgMantra;
-    LinearLayout morphoLayout, startekLayout, mantraLayout;
-    TextView tvMorpho, tvMantra, tvStartek;
     AppCompatButton btnProceedDeviceLayout;
 
     String selectedDevice = "select";
@@ -244,38 +242,27 @@ public class AepsActivity extends AppCompatActivity {
      */
     private void deviceLayoutListeners() {
 
-        mantraLayout.setOnClickListener(view -> {
+        imgMantra.setOnClickListener(view -> {
             imgMantra.setImageResource(R.drawable.mantra_selected);
             imgMorpho.setImageResource(R.drawable.morpho_unselected);
             imgStartek.setImageResource(R.drawable.startek_unselected);
 
-            tvMantra.setTextColor(getResources().getColor(R.color.teal_200));
-            tvMorpho.setTextColor(getResources().getColor(R.color.white));
-            tvStartek.setTextColor(getResources().getColor(R.color.white));
-
             selectedDevice = "Mantra";
         });
 
-        startekLayout.setOnClickListener(view -> {
+        imgStartek.setOnClickListener(view -> {
             imgMantra.setImageResource(R.drawable.mantra_unselected);
             imgMorpho.setImageResource(R.drawable.morpho_unselected);
             imgStartek.setImageResource(R.drawable.startek_selected);
 
-            tvMantra.setTextColor(getResources().getColor(R.color.white));
-            tvMorpho.setTextColor(getResources().getColor(R.color.white));
-            tvStartek.setTextColor(getResources().getColor(R.color.teal_200));
-
             selectedDevice = "Startek";
         });
 
-        morphoLayout.setOnClickListener(view -> {
+        imgMorpho.setOnClickListener(view -> {
             imgMantra.setImageResource(R.drawable.mantra_unselected);
             imgMorpho.setImageResource(R.drawable.morpho_selected);
             imgStartek.setImageResource(R.drawable.startek_unselected);
 
-            tvMantra.setTextColor(getResources().getColor(R.color.white));
-            tvMorpho.setTextColor(getResources().getColor(R.color.teal_200));
-            tvStartek.setTextColor(getResources().getColor(R.color.white));
 
             selectedDevice = "Morpho";
         });
@@ -798,14 +785,6 @@ public class AepsActivity extends AppCompatActivity {
         imgMorpho = findViewById(R.id.img_morpho);
         imgMantra = findViewById(R.id.img_mantra);
         imgStartek = findViewById(R.id.img_startek);
-
-        morphoLayout = findViewById(R.id.morpho_layout);
-        mantraLayout = findViewById(R.id.mantra_layout);
-        startekLayout = findViewById(R.id.startek_layout);
-
-        tvStartek = findViewById(R.id.tv_startek);
-        tvMorpho = findViewById(R.id.tv_morpho);
-        tvMantra = findViewById(R.id.tv_mantra);
 
         btnProceedDeviceLayout = findViewById(R.id.btn_proceed_device);
         btnNext = findViewById(R.id.btn_next);

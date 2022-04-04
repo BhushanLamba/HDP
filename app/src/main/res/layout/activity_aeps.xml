@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/background_color"
+    android:background="#F1F1F1"
     android:layout_height="match_parent"
     tools:context=".activities.AepsActivity">
 
@@ -43,6 +43,7 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:visibility="gone"
                 android:id="@+id/detail_layout"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
@@ -260,7 +261,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/detail_layout"
                 android:id="@+id/device_layout"
                 android:layout_width="match_parent"
@@ -282,97 +282,57 @@
                     android:weightSum="3">
 
                     <LinearLayout
-                        android:id="@+id/morpho_layout"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/card_back"
-                        android:elevation="6dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:paddingTop="4dp">
+                        android:layout_height="wrap_content">
 
                         <ImageView
+
+                            android:elevation="8dp"
+                            android:layout_weight="1"
                             android:id="@+id/img_morpho"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
                             android:src="@drawable/morpho_unselected" />
 
-                        <TextView
-                            android:id="@+id/tv_morpho"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/text_back"
-                            android:gravity="center"
-                            android:paddingTop="8dp"
-                            android:text="Morpho"
-                            android:textColor="@color/white"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/startek_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/card_back"
-                        android:elevation="6dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:paddingTop="4dp">
-
                         <ImageView
+                            android:elevation="8dp"
+                            android:layout_weight="1"
                             android:id="@+id/img_startek"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
                             android:src="@drawable/startek_unselected" />
 
-                        <TextView
-                            android:id="@+id/tv_startek"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/text_back"
-                            android:gravity="center"
-                            android:paddingTop="8dp"
-                            android:text="Startek"
-                            android:textColor="@color/white"
-                            android:textStyle="bold" />
-
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/mantra_layout"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/card_back"
-                        android:elevation="6dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:paddingTop="4dp">
+                        android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:elevation="8dp"
+                                android:layout_weight="1"
+                                android:id="@+id/img_mantra"
+                                android:layout_width="match_parent"
+                                android:layout_height="150dp"
+                                android:src="@drawable/mantra_unselected" />
 
                         <ImageView
-                            android:id="@+id/img_mantra"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:src="@drawable/mantra_unselected" />
-
-                        <TextView
-                            android:id="@+id/tv_mantra"
+                            android:visibility="invisible"
+                            android:elevation="8dp"
+                            android:layout_weight="1"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/text_back"
-                            android:gravity="center"
-                            android:paddingTop="8dp"
-                            android:text="Mantra"
-                            android:textColor="@color/white"
-                            android:textStyle="bold" />
+                            android:layout_height="120dp"
+                            android:src="@drawable/mantra_selected" />
+
+
 
                     </LinearLayout>
+
+
 
                 </LinearLayout>
 
