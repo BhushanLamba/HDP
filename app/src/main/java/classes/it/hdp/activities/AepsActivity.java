@@ -507,8 +507,6 @@ public class AepsActivity extends AppCompatActivity {
         }
     }
 
-
-
     private void getAepsTxn() {
         try {
             String aadharNo = etAadharCard.getText().toString().trim();
@@ -679,8 +677,6 @@ public class AepsActivity extends AppCompatActivity {
         }
 
     }
-
-
 
     private void initViews() {
 
