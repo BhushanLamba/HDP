@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import classes.it.hdp.R;
 import classes.it.hdp.fragments.HomeFragment;
@@ -25,7 +26,7 @@ public class HomeDashboardActivity extends AppCompatActivity {
 
         loadFragment(new HomeFragment());
         handleClickEvents();
-
+        Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show();
 
 
     }
