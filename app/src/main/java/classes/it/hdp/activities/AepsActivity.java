@@ -75,7 +75,6 @@ public class AepsActivity extends AppCompatActivity {
 
     String userId, lat = "0.0", longi = "0.0";
 
-    FusedLocationProviderClient mFusedLocationClient;
 
     SharedPreferences sharedPreferences;
 
@@ -122,9 +121,10 @@ public class AepsActivity extends AppCompatActivity {
         initViews();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(AepsActivity.this);
         userId = sharedPreferences.getString("userid", null);
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(AepsActivity.this);
         serializer = new Persister();
 
+        lat=getIntent().getStringExtra("lat");
+        longi=getIntent().getStringExtra("long");
         balance=getIntent().getStringExtra("balance");
         tvBalance.setText("Wallet -:  ₹ "+balance);
 
@@ -489,8 +489,7 @@ public class AepsActivity extends AppCompatActivity {
                                 }*/
 
                             //serialNo="FIMPEJCA2627";
-                            getLastLocation();
-                            //getAepsTxn();
+                            getAepsTxn();
 
 
                         } catch (Exception e) {
@@ -508,68 +507,7 @@ public class AepsActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("MissingPermission")
-    private void getLastLocation() {
-        if (checkPermissions()) {
-            if (isLocationEnabled()) {
-                mFusedLocationClient.getLastLocation().addOnCompleteListener(
-                        new OnCompleteListener<Location>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Location> task) {
-                                Location location = task.getResult();
-                                if (location == null) {
-                                    requestNewLocationData();
-                                } else {
-                                    lat = location.getLatitude() + "";
-                                    longi = location.getLongitude() + "";
-                                    //doAepsTransaction();
-                                    //TODO: Do AEPS TRANSACTION
-                                    getAepsTxn();
-                                }
-                            }
-                        }
-                );
-            } else {
-                Toast.makeText(AepsActivity.this, "Turn on location", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(intent);
-            }
-        } else {
-            requestPermissions();
-        }
-    }
 
-    private boolean checkPermissions() {
-        return ActivityCompat.checkSelfPermission(AepsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(AepsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-    }
-
-    private void requestPermissions() {
-        ActivityCompat.requestPermissions(AepsActivity.this,
-                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
-                1
-        );
-    }
-
-    private boolean isLocationEnabled() {
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
-                LocationManager.NETWORK_PROVIDER
-        );
-    }
-
-    private final LocationCallback mLocationCallback = new LocationCallback() {
-        @Override
-        public void onLocationResult(LocationResult locationResult) {
-            Location mLastLocation = locationResult.getLastLocation();
-            lat = mLastLocation.getLatitude() + "";
-            longi = mLastLocation.getLongitude() + "";
-            //doAepsTransaction();
-            //TODO: Do AEPS TRANSACTION
-            getAepsTxn();
-
-        }
-    };
 
     private void getAepsTxn() {
         try {
@@ -742,22 +680,7 @@ public class AepsActivity extends AppCompatActivity {
 
     }
 
-    @SuppressLint("MissingPermission")
-    private void requestNewLocationData() {
 
-        LocationRequest mLocationRequest = new LocationRequest();
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(0);
-        mLocationRequest.setFastestInterval(0);
-        mLocationRequest.setNumUpdates(1);
-
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(AepsActivity.this);
-        mFusedLocationClient.requestLocationUpdates(
-                mLocationRequest, mLocationCallback,
-                Looper.myLooper()
-        );
-
-    }
 
     private void initViews() {
 

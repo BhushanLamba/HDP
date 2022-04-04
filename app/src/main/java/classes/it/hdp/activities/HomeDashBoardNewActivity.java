@@ -1,14 +1,23 @@
 package classes.it.hdp.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +29,13 @@ import android.widget.Toast;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
@@ -46,6 +62,10 @@ public class HomeDashBoardNewActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     ImageView imgMenu;
     String versionCodeStr;
+    FusedLocationProviderClient mFusedLocationClient;
+    String  lat = "0.0", longi = "0.0";
+
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -55,6 +75,8 @@ public class HomeDashBoardNewActivity extends AppCompatActivity {
         inhitViews();
 
         versionCodeStr= BuildConfig.VERSION_NAME;
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(HomeDashBoardNewActivity.this);
+
 
         sharedPreferences= PreferenceManager.getDefaultSharedPreferences(HomeDashBoardNewActivity.this);
         userId=sharedPreferences.getString("userid",null);
@@ -95,11 +117,96 @@ public class HomeDashBoardNewActivity extends AppCompatActivity {
 
         aepsLayout.setOnClickListener(v->
         {
-
-            Intent intent=new Intent(HomeDashBoardNewActivity.this,AepsActivity.class);
-                intent.putExtra("balance",balance);
-            startActivity(intent);
+            getLastLocation();
         });
+    }
+
+    @SuppressLint("MissingPermission")
+    private void getLastLocation() {
+        if (checkPermissions()) {
+            if (isLocationEnabled()) {
+                mFusedLocationClient.getLastLocation().addOnCompleteListener(
+                        new OnCompleteListener<Location>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Location> task) {
+                                Location location = task.getResult();
+                                if (location == null) {
+                                    requestNewLocationData();
+                                } else {
+                                    lat = location.getLatitude() + "";
+                                    longi = location.getLongitude() + "";
+                                    //doAepsTransaction();
+                                    //TODO: Do AEPS TRANSACTION
+                                    launchAeps();
+                                }
+                            }
+                        }
+                );
+            } else {
+                Toast.makeText(HomeDashBoardNewActivity.this, "Turn on location", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        } else {
+            requestPermissions();
+        }
+    }
+
+    private void launchAeps() {
+        Intent intent=new Intent(HomeDashBoardNewActivity.this,AepsActivity.class);
+        intent.putExtra("balance",balance);
+        intent.putExtra("lat",lat);
+        intent.putExtra("long",longi);
+        startActivity(intent);
+    }
+
+    private boolean checkPermissions() {
+        return ActivityCompat.checkSelfPermission(HomeDashBoardNewActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(HomeDashBoardNewActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(HomeDashBoardNewActivity.this,
+                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
+                1
+        );
+    }
+
+    private boolean isLocationEnabled() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+                LocationManager.NETWORK_PROVIDER
+        );
+    }
+
+    private final LocationCallback mLocationCallback = new LocationCallback() {
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
+            Location mLastLocation = locationResult.getLastLocation();
+            lat = mLastLocation.getLatitude() + "";
+            longi = mLastLocation.getLongitude() + "";
+            //doAepsTransaction();
+            //TODO: Do AEPS TRANSACTION
+            launchAeps();
+
+        }
+    };
+
+    @SuppressLint("MissingPermission")
+    private void requestNewLocationData() {
+
+        LocationRequest mLocationRequest = new LocationRequest();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(0);
+        mLocationRequest.setFastestInterval(0);
+        mLocationRequest.setNumUpdates(1);
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(HomeDashBoardNewActivity.this);
+        mFusedLocationClient.requestLocationUpdates(
+                mLocationRequest, mLocationCallback,
+                Looper.myLooper()
+        );
+
     }
 
     @SuppressLint("SetTextI18n")
