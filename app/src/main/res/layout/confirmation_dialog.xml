@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@drawable/card_back"
+    android:elevation="8dp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -33,15 +34,14 @@
         android:layout_height="wrap_content"/>
 
 
-    <ng.max.slideview.SlideView
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_confirm"
         android:layout_margin="10dp"
-        android:id="@+id/slideView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:sv_buttonBackgroundColor="@color/purple_200"
-        app:sv_buttonImage="@drawable/confirm"
-        app:sv_slideBackgroundColor="@color/purple_200"
-        app:sv_slideText="Slide right to confirm"
-        app:sv_slideTextColor="@color/white" />
+        android:text="Confirm"
+        android:textColor="@color/white"
+        android:background="@drawable/button_back"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

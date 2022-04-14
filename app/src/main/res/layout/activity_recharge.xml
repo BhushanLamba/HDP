@@ -171,6 +171,8 @@
             </LinearLayout>
 
             <LinearLayout
+                tools:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/operator_layout"
                 android:id="@+id/circle_layout"
                 android:layout_width="match_parent"

@@ -112,6 +112,7 @@ public class RechargeActivity extends AppCompatActivity {
 
                 TextView tvMessage = convertView.findViewById(R.id.tv_message);
                 ImageView imgClose = convertView.findViewById(R.id.img_close);
+                AppCompatButton btnConfirm = convertView.findViewById(R.id.btn_confirm);
 
                 imgClose.setOnClickListener(v1 ->
                 {
@@ -120,18 +121,11 @@ public class RechargeActivity extends AppCompatActivity {
 
                 tvMessage.setText("Operator : " + selectedOperatorName + "\nNumber : " + number + "\nAmount : " + amount);
 
-                SlideView slideView = (SlideView) convertView.findViewById(R.id.slideView);
-                slideView.setOnSlideCompleteListener(new SlideView.OnSlideCompleteListener() {
-                    @Override
-                    public void onSlideComplete(SlideView slideView) {
-                        // vibrate the device
-                        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                        vibrator.vibrate(100);
-                        doRecharge();
-                        confirmDialog.dismiss();
-                        // go to a new activity
-                    }
+                btnConfirm.setOnClickListener(v1->
+                {
+                    doRecharge();
                 });
+
             }
         });
 
