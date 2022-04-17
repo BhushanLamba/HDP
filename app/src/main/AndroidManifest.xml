@@ -23,6 +23,9 @@
         android:theme="@style/Theme.HDP"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.AddMoneyActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.ReportsActivity"
             android:exported="true" />
         <activity

@@ -299,17 +299,17 @@ public interface WebServiceInterface {
 
 
     @FormUrlEncoded
-    @POST("ConfirmUpiPayment")
-    Call<JsonObject> insertUpiDetails(@Header("Authorization") String auth,
-                                      @Field("userid") String userid,
-                                      @Field("uniqueid") String uniqueid,
-                                      @Field("status") String status);
+    @POST("UpdateUpiPayment")
+    Call<JsonObject> updateUpiDetails(@Field("UserKey") String UserKey,
+                                      @Field("OrderId") String OrderId,
+                                      @Field("status") String status,
+                                      @Field("TransactionId") String TransactionId,
+                                      @Field("response") String response);
 
     @FormUrlEncoded
-    @POST("UpdateUpiPayments")
-    Call<JsonObject> updateUpiDetails(@Header("Authorization") String auth,
-                                      @Field("userid") String userid,
-                                      @Field("amount") String amount);
+    @POST("SaveUpiData")
+    Call<JsonObject> insertUpiDetails(@Field("UserKey") String UserKey,
+                                      @Field("Amount") String Amount);
 
 
     @FormUrlEncoded

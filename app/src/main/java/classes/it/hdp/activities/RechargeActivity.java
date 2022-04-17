@@ -38,6 +38,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 import classes.it.hdp.R;
 import classes.it.hdp.adapters.OperatorAdapter;
@@ -84,8 +85,8 @@ public class RechargeActivity extends AppCompatActivity {
         userId = sharedPreferences.getString("userid", null);
 
 
-        tvTitle.setText(service);
-        tvServiceName.setText(service+" Recharge");
+        tvTitle.setText(service.toUpperCase());
+        tvServiceName.setText((service.toUpperCase()+" Recharge"));
 
         getOperators();
 

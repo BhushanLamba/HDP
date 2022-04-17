@@ -64,6 +64,7 @@ public class HomeDashBoardNewActivity extends AppCompatActivity {
     String versionCodeStr;
     FusedLocationProviderClient mFusedLocationClient;
     String  lat = "0.0", longi = "0.0";
+    LinearLayout addMoneyLayout;
 
 
 
@@ -110,14 +111,19 @@ public class HomeDashBoardNewActivity extends AppCompatActivity {
 
         dthLayout.setOnClickListener(v->
         {
-            /*Intent intent=new Intent(HomeDashBoardNewActivity.this,RechargeActivity.class);
-            intent.putExtra("service", "PREPAID");
-            startActivity(intent);*/
+            Intent intent=new Intent(HomeDashBoardNewActivity.this,RechargeActivity.class);
+            intent.putExtra("service", "dth");
+            startActivity(intent);
         });
 
         aepsLayout.setOnClickListener(v->
         {
             getLastLocation();
+        });
+
+        addMoneyLayout.setOnClickListener(v->
+        {
+            startActivity(new Intent(HomeDashBoardNewActivity.this,AddMoneyActivity.class));
         });
     }
 
@@ -405,6 +411,7 @@ public class HomeDashBoardNewActivity extends AppCompatActivity {
         dthLayout=findViewById(R.id.dth_layout);
         imgMenu=findViewById(R.id.img_profile);
         tvShortName=findViewById(R.id.tv_short_name);
+        addMoneyLayout=findViewById(R.id.add_money_layout);
     }
 
     private void setImageSlider() {

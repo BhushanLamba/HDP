@@ -4,19 +4,23 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/BhushanLamba/HDP/app/src/main/res/layout/activity_aeps.xml" value="0.1" />
-        <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/activity_aeps.xml" value="0.24114583333333334" />
+        <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/drawable/gpay.xml" value="0.21851851851851853" />
+        <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/activity_add_money.xml" value="0.24114583333333334" />
+        <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/activity_aeps.xml" value="0.4" />
         <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/activity_aeps_report.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/activity_home_dash_board_new.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/activity_login.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/activity_mpinactivity.xml" value="0.24114583333333334" />
-        <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/activity_recharge.xml" value="0.24114583333333334" />
+        <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/activity_recharge.xml" value="0.2" />
         <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/activity_recharge_report.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/activity_recharge_status.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/activity_reports.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/activity_share_aeps_report.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/activity_splash_screen.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/confirmation_dialog.xml" value="0.24114583333333334" />
+        <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/device_not_connected.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/navigation_menu.xml" value="0.24114583333333334" />
+        <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/recharge_status_layout.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/Bhushan/AndroidStudioProjects/HDP/app/src/main/res/layout/row_aeps_report.xml" value="0.24114583333333334" />
       </map>
     </option>
